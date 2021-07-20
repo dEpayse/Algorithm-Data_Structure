@@ -35,13 +35,24 @@ fun main() {
             }
             "n" -> {
                 println("Enter 'numbers separating by space' and press 'enter button'")
-                val list = sc.nextLine().split(" ").let {
-                    val numList = mutableListOf<Int>()
-                    for(numStr in it){
-                        numList.add(numStr.toInt())
+
+                var list: List<Int>
+
+                while(true){
+                    try {
+                        list = sc.nextLine().split(" ").let {
+                            val numList = mutableListOf<Int>()
+                            for (numStr in it) {
+                                numList.add(numStr.toInt())
+                            }
+                            numList
+                        }
+                        break
+                    } catch (e : Exception) {
+                        println("please enter 'numbers separating by space' and press 'enter button'")
                     }
-                    numList
                 }
+
                 println(quickSort(list))
                 println("Sorting Complete by quick sort")
                 break
