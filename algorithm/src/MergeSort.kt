@@ -1,7 +1,7 @@
 import java.util.*
 
 fun <T : Comparable<T>> mergeSort(list: List<T>): List<T> {
-    fun subMerge(frontList: List<T>, backList: List<T>): List<T> {
+    fun splitAndMerge(frontList: List<T>, backList: List<T>): List<T> {
         //base case, termination case
         if (backList.isEmpty()) return frontList
 
@@ -9,13 +9,13 @@ fun <T : Comparable<T>> mergeSort(list: List<T>): List<T> {
         val frontHalfIndex = frontList.lastIndex / 2 + 1
         val backHalfIndex = backList.lastIndex / 2 + 1
         val frontQueue = LinkedList(
-            subMerge(
+            splitAndMerge(
                 frontList.subList(0, frontHalfIndex),
                 frontList.subList(frontHalfIndex, frontList.size)
             )
         )
         val backQueue = LinkedList(
-            subMerge(
+            splitAndMerge(
                 backList.subList(0, backHalfIndex),
                 backList.subList(backHalfIndex, backList.size)
             )
@@ -46,7 +46,7 @@ fun <T : Comparable<T>> mergeSort(list: List<T>): List<T> {
     }
 
     val halfIndex = list.lastIndex / 2 + 1
-    return subMerge(
+    return splitAndMerge(
         list.subList(0, halfIndex),
         list.subList(halfIndex, list.size)
     )
