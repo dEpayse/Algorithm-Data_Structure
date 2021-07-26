@@ -19,6 +19,7 @@ fun main() {
 }
 
 // 동적 계획법(Dynamic Programming) - memoization 기법을 사용함
+// 큰 문제를 작은 문제로 나누었을 때, 작은 문제의 결과값이 변하지 않을 때 사용가능
 fun fibonacciDynamicProgramming(num: Int): Int {
     if (num <= 1) return num
     val fiboList = IntArray(num + 1)
